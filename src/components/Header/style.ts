@@ -8,6 +8,7 @@ export const Container = styled.header`
   background-color: var(--tempestPink);
 
   align-items: center;
+  margin-bottom: 2rem;
   img {
     height: 100%;
   }
