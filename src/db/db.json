@@ -1,0 +1,11 @@
+{
+  "test": [
+    {
+      "name": "test",
+      "description": "desc",
+      "type": "text",
+      "default": "default",
+      "required": true
+    }
+  ]
+}
