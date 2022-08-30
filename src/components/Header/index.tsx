@@ -1,6 +1,11 @@
+import Logo from "../../assets/logo.png";
+import * as S from "./style";
 
 export default function Header() {
   return (
-    <div>index</div>
-  )
+    <S.Container>
+      <img src={Logo} alt="Dona maria e cupcake" />
+      <h1>Cadastro de Funcionários</h1>
+    </S.Container>
+  );
 }

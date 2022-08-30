@@ -4,8 +4,10 @@ import Header from "./components/Header";
 function App() {
   return (
     <>
-    <Header/>
-    <Form/>
+      <Header />
+      <main>
+        <Form />
+      </main>
     </>
   );
 }

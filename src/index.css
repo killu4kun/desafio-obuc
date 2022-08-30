@@ -13,3 +13,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+:root {
+  --offWhite: #faf9f6;
+  --tempestPink: #FFC4C4;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--offWhite);
+}
