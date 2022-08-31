@@ -1,4 +1,4 @@
-# My Awesome Project
+# Desafio-Obuc
 
 # Contexto
 Este projeto trata-se de uma ferramenta de cadastro de funcionários para a empresa de doces da Dona Maria.
