@@ -9,6 +9,13 @@ export const Form = styled.form`
 
   border: 1px solid green;
 
+  .is-invalid {
+    border: 1px solid red;
+  }
+
+  .invalid-feedback {
+    color: red;
+  }
   textarea {
     width: 100%;
     height: 5rem;
@@ -16,6 +23,18 @@ export const Form = styled.form`
   }
   label {
     padding-bottom: 0.5rem;
+  }
+
+  section:nth-last-of-type(1) {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+  }
+
+  p {
+    color: red;
   }
 `;
 
@@ -32,7 +51,7 @@ export const Container = styled.div`
   width: 30%;
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   border: 1px solid blue;
@@ -46,4 +65,6 @@ export const TextAreaContainer = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const Button = styled.button``;
+export const Button = styled.button`
+  width: 30%;
+`;
