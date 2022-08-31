@@ -27,7 +27,7 @@ Front-end:
 
 - [React](http://facebook.github.io/react) biblioteca utilizada para criar interfaces de usuário em páginas web.
 - [React-Hook-Form](https://react-hook-form.com/) ferramenta utilizada gerenciamento do formulário.
-- [Typescript] (https://www.typescriptlang.org/) complemento ao JS.
+- [Typescript](https://www.typescriptlang.org/) complemento ao JS.
 
 ### CSS
 
