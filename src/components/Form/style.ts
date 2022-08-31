@@ -7,7 +7,6 @@ export const Form = styled.form`
   align-items: center;
   width: 100%;
 
-  border: 1px solid green;
 
   .is-invalid {
     border: 1px solid red;
@@ -54,7 +53,6 @@ export const Container = styled.div`
 export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
-  border: 1px solid blue;
 `;
 
 export const TextAreaContainer = styled.div`

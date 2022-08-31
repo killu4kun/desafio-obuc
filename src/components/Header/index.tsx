@@ -6,6 +6,7 @@ export default function Header() {
     <S.Container>
       <img src={Logo} alt="Dona maria e cupcake" />
       <h1>Cadastro de Funcionários</h1>
+      <div></div>
     </S.Container>
   );
 }

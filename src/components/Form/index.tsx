@@ -3,7 +3,7 @@ import * as S from "./style";
 import { saveAs } from "file-saver";
 import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
+import { validationSchema } from "./validations";
 
 interface IForm {
   title: string;
@@ -16,61 +16,47 @@ interface IForm {
 }
 
 export default function Form() {
-  const veryIfHasOnlyLetterNumbersAndSpaces = /^[a-zA-Z\s]*$/g;
-
-  const verifyHasOnlyLetterAndSpaces = /^[a-zA-Z\s]*$/;
-  const validationSchema = Yup.object().shape({
-    title: Yup.string()
-      .required("Campo obrigatório")
-      .matches(verifyHasOnlyLetterAndSpaces, "Contém caracteres invalidos"),
-    salary: Yup.number().required("Campo obrigatório"),
-    activities: Yup.string()
-      .required("Campo obrigatório")
-      .matches(verifyHasOnlyLetterAndSpaces, "Contém caracteres invalidos"),
-    benefits: Yup.string()
-      .required("Campo obrigatório")
-      .matches(
-        veryIfHasOnlyLetterNumbersAndSpaces,
-        "Contém caracteres invalidos"
-      ),
-    steps: Yup.string()
-      .required("Campo obrigatório")
-      .matches(
-        veryIfHasOnlyLetterNumbersAndSpaces,
-        "Contém caracteres invalidos"
-      ),
-    skills: Yup.string()
-      .required("Campo obrigatório")
-      .matches(verifyHasOnlyLetterAndSpaces, "Contém caracteres invalidos"),
-    experiences: Yup.string()
-      .required("Campo obrigatório")
-      .matches(
-        veryIfHasOnlyLetterNumbersAndSpaces,
-        "Contém caracteres invalidos"
-      ),
-  });
+  const [workers, setWorkers] = useState<IForm[]>([]);
 
   const formOptions = { resolver: yupResolver(validationSchema) };
-
-  const [workers, setWorkers] = useState<IForm[]>([]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
+    setValue,
+    reset,
   } = useForm<IForm>(formOptions);
 
   const onSubmit = (data: IForm): void => {
     setWorkers((prevState) => [...prevState, data]);
+    reset();
   };
 
   function exportUserInfo(userInfo: IForm[]) {
-    const fileData = JSON.stringify(userInfo);
-    const blob = new Blob([fileData], { type: "text/plain" });
-    saveAs(blob, "Funcionarios.txt");
+    if (workers.length) {
+      const fileData = JSON.stringify(userInfo);
+      const blob = new Blob([fileData], { type: "text/plain" });
+      saveAs(blob, "Funcionarios.txt");
+      return;
+    }
+    alert("Nenhum cargo cadastrado");
   }
 
-  console.log(errors);
+  function FindIfJobHasAlreadyInDb() {
+    const title = watch("title");
+    const findWorker = workers.filter(
+      (worker) => worker.title.toLowerCase() === title.toLowerCase()
+    );
+    const mostRecentRole = findWorker[findWorker.length - 1];
+    if (findWorker) {
+      setValue("salary", mostRecentRole?.salary);
+      setValue("activities", mostRecentRole?.activities);
+      setValue("skills", mostRecentRole?.skills);
+      setValue("experiences", mostRecentRole?.experiences);
+    }
+  }
 
   return (
     <>
@@ -84,6 +70,7 @@ export default function Form() {
               {...register("title", {
                 required: true,
               })}
+              onBlur={FindIfJobHasAlreadyInDb}
               className={errors.title ? "is-invalid" : ""}
             />
             <p className="invalid-feedback">{errors.title?.message}</p>
